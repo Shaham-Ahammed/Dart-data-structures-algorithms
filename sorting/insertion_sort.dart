@@ -3,7 +3,7 @@ void main(List<String> args) {
 }
 
 insertionSort(List<int> array) {
-  for (var i = 0; i < array.length; i++) {
+  for (var i = 1; i < array.length; i++) {
     int temp = array[i];
     int j = i - 1;
     while (j >= 0 && array[j] > temp) {
