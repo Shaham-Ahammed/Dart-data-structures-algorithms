@@ -1,11 +1,11 @@
 class Stack {
   List<int> array = [];
   push(int data) {
-    array.insert(0, data);
+    array.add(data);
   }
 
   pop() {
-    array.removeAt(0);
+    array.removeLast();
   }
 
   printing() {
