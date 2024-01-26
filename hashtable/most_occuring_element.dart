@@ -8,14 +8,10 @@ void main(List<String> args) {
       count[element] = 1;
     }
   });
-  int? maxKey;
-  int maxCount = 0;
+ 
   ;
   count.forEach((key, value) {
-    if (value > maxCount) {
-      maxCount = value;
-      maxKey = key;
-    }
+    print("$key occured $value times");
   });
-  print("most occured value is $maxKey");
+
 }
