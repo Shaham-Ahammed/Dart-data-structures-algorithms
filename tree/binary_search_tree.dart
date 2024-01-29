@@ -50,7 +50,7 @@ class BinaryTree {
     }
     return false;
   }
-  
+
   remove(int data) {
     removeHelper(data, root, null);
   }
@@ -102,12 +102,33 @@ class BinaryTree {
       return getMinValue(currentNode.left!);
     }
   }
+
+  int findClosest(int target) {
+    Node? current = root;
+    int closest = current!.data!;
+    while (current != null) {
+      if ((target - closest).abs() > (target - current.data!).abs()) {
+        closest = current.data!;
+      }
+      if (current.data! < target) {
+        current = current.right;
+      } else if (current.data! > target) {
+        current = current.left;
+      } else {
+        break;
+      }
+    }
+    return closest;
+  }
 }
 
 void main(List<String> args) {
   BinaryTree tree = BinaryTree();
-  tree.insertData(23);
   tree.insertData(10);
-  tree.insertData(14);
-  print(tree.contains(000));
+  tree.insertData(8);
+  tree.insertData(16);
+  tree.insertData(4);
+  tree.insertData(9);
+  print(tree.findClosest(13));
+  ;
 }
