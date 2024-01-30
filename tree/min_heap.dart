@@ -20,7 +20,7 @@ class MinHeap {
     while (leftIdx <= endIdx) {
       int rightIdx = rightChild(currentIdx);
       int? indexToShift;
-      if (rightIdx <= leftIdx && heap[rightIdx] < heap[leftIdx]) {
+      if (rightIdx<=endIdx && heap[rightIdx] < heap[leftIdx]) {
         indexToShift = rightIdx;
       } else {
         indexToShift = leftIdx;
