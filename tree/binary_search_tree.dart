@@ -130,5 +130,4 @@ void main(List<String> args) {
   tree.insertData(4);
   tree.insertData(9);
   print(tree.findClosest(13));
-  ;
 }
