@@ -12,9 +12,10 @@ class MaxHeap {
     }
   }
 
-  shiftDown(int currentidx,[int? endIdxForHeapSort]) {
+  shiftDown(int currentidx, [int? endIdxForHeapSort]) {
     int leftIdx = leftChild(currentidx);
-    int endIdx = endIdxForHeapSort==null? heap.length - 1 : endIdxForHeapSort;
+    int endIdx =
+        endIdxForHeapSort == null ? heap.length - 1 : endIdxForHeapSort;
     while (leftIdx <= endIdx) {
       int rightIdx = rightChild(currentidx);
       int? indexToShift;
@@ -59,17 +60,15 @@ class MaxHeap {
     shiftDown(0);
   }
 
- heapSort() {
-  int end = heap.length - 1;
-  while (end > 0) {
-    swap(heap, 0, end);
-    shiftDown(0, end - 1);
-    end--;
+  heapSort() {
+    int end = heap.length - 1;
+    while (end > 0) {
+      swap(heap, 0, end);
+      shiftDown(0, end - 1);
+      end--;
+    }
+    print(heap);
   }
-  print(heap);
-}
-
-
 
   int parent(int i) {
     return (i - 1) ~/ 2;
@@ -98,7 +97,10 @@ void main(List<String> args) {
   heap.insert(55);
   heap.insert(2);
   heap.insert(6);
+
+  heap.insert(67);
+
+  heap.dislay();
+  print("\n");
   heap.heapSort();
-//  heap.remove();
-//  heap.dislay();
 }
