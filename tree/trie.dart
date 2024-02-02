@@ -5,6 +5,7 @@ class TrieNode {
 class Trie {
   TrieNode root = TrieNode();
   String endSymbol = "*";
+  
   insert(String str) {
     TrieNode node = root;
     for (var i = 0; i < str.length; i++) {

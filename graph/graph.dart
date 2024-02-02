@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class Graph {
   Map<int, List<int>> map = {};
 
@@ -35,21 +37,32 @@ class Graph {
   }
 
   //breadth first search
-  bfs(int firstElement) {
+  
+  bfs(int startIndex) {
+    Set<int> allValues = {};
     List<int> visited = [];
     List<int> queue = [];
-    visited.add(firstElement);
-    queue.add(firstElement);
+    map.forEach((key, value) {
+      allValues.add(key);
+      value.forEach((element) {
+        allValues.add(element);
+      });
+    });
+    queue.add(startIndex);
 
     while (queue.isNotEmpty) {
-      int currentElement = queue.removeAt(0);
-      print("${currentElement} ");
-
-      for (int element in map[currentElement]!) {
+      int currentVertex = queue.removeAt(0);
+      stdout.write("${currentVertex} ");
+      visited.add(currentVertex);
+      allValues.remove(currentVertex);
+      
+      for (int element in map[currentVertex]!) {
         if (!visited.contains(element)) {
-          visited.add(element);
           queue.add(element);
         }
+      }
+      if (queue.isEmpty && allValues.isNotEmpty) {
+        queue.add(allValues.first);
       }
     }
   }
@@ -79,7 +92,8 @@ void main(List<String> args) {
   graph.insert(7, 9, true);
   // graph.delete(3);
   graph.display();
-  graph.bfs(12);
-  print("-----");
-  graph.dfs(12);
+   graph.bfs(3);
+//  print("-----");
+  // graph.dfs(12);
+  
 }
