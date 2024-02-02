@@ -37,25 +37,25 @@ class Graph {
   }
 
   //breadth first search
-  
+
   bfs(int startIndex) {
     Set<int> allValues = {};
     List<int> visited = [];
     List<int> queue = [];
+
     map.forEach((key, value) {
       allValues.add(key);
-      value.forEach((element) {
-        allValues.add(element);
-      });
     });
+
     queue.add(startIndex);
 
     while (queue.isNotEmpty) {
       int currentVertex = queue.removeAt(0);
       stdout.write("${currentVertex} ");
+
       visited.add(currentVertex);
       allValues.remove(currentVertex);
-      
+
       for (int element in map[currentVertex]!) {
         if (!visited.contains(element)) {
           queue.add(element);
@@ -68,18 +68,27 @@ class Graph {
   }
 
   //deapth first search
+
   dfs(int firstElement) {
     List<int> visited = [];
-    _dfsHelper(firstElement, visited);
+    Set<int> allValues = {};
+    map.forEach((key, value) {
+      allValues.add(key);
+    });
+    _dfsHelper(firstElement, visited, allValues);
   }
 
-  _dfsHelper(int currentVertex, List<int> visited) {
+  _dfsHelper(int currentVertex, List<int> visited, Set<int> allValues) {
     visited.add(currentVertex);
-    print("${currentVertex} ");
+    allValues.remove(currentVertex);
+    stdout.write("${currentVertex} ");
     for (int element in map[currentVertex]!) {
       if (!visited.contains(element)) {
-        _dfsHelper(element, visited);
+        _dfsHelper(element, visited, allValues);
       }
+    }
+    if (allValues.isNotEmpty) {
+      _dfsHelper(allValues.first, visited, allValues);
     }
   }
 }
@@ -92,8 +101,7 @@ void main(List<String> args) {
   graph.insert(7, 9, true);
   // graph.delete(3);
   graph.display();
-   graph.bfs(3);
-//  print("-----");
-  // graph.dfs(12);
-  
+  graph.bfs(3);
+  print("\n-----");
+  graph.dfs(7);
 }
