@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class Node {
   int? data;
   Node? left;
@@ -51,7 +53,7 @@ class BinaryTree {
     return false;
   }
 
-  remove(int data) {
+  delete(int data) {
     removeHelper(data, root, null);
   }
 
@@ -65,7 +67,9 @@ class BinaryTree {
         currentNode = currentNode.right;
       } else {
         if (currentNode.left != null && currentNode.right != null) {
+          //assigning the smallest value of right side to current node data
           currentNode.data = getMinValue(currentNode.right!);
+          //removing the smallest value of right side by making current node.right as current node and current node as parent node
           removeHelper(currentNode.data!, currentNode.right, currentNode);
         } else {
           if (parentNode == null) {
@@ -119,6 +123,42 @@ class BinaryTree {
       }
     }
     return closest;
+  }
+
+  inOrder() {
+    inOrderHelper(root);
+  }
+
+  inOrderHelper(Node? node) {
+    if (node != null) {
+      inOrderHelper(node.left);
+      stdout.write(node.data);
+      inOrderHelper(node.right);
+    }
+  }
+
+  preOrder() {
+    preOrderHelper(root);
+  }
+
+  preOrderHelper(Node? node) {
+    if (node != null) {
+      stdout.write(node.data);
+      preOrderHelper(node.left);
+      preOrderHelper(node.right);
+    }
+  }
+
+  postOrder() {
+    postOrderHelper(root);
+  }
+
+  postOrderHelper(Node? node) {
+    if (node != null) {
+      postOrderHelper(node.left);
+      postOrderHelper(node.right);
+      stdout.write(node.data);
+    }
   }
 }
 
