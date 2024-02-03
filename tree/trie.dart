@@ -5,7 +5,7 @@ class TrieNode {
 class Trie {
   TrieNode root = TrieNode();
   String endSymbol = "*";
-  
+
   insert(String str) {
     TrieNode node = root;
     for (var i = 0; i < str.length; i++) {
@@ -48,6 +48,35 @@ class Trie {
       }
     });
   }
+
+  void delete(String str) {
+    if (contains(str)) {
+         deleteHelper(root, str, 0);
+    }
+ 
+  }
+
+  bool deleteHelper(TrieNode node, String str, int index) {
+    if (index == str.length) {
+     
+      node.children.remove(endSymbol);
+      return node
+          .children.isEmpty; 
+    }
+
+    String letter = str[index];
+
+    bool shouldDeleteNode =
+        deleteHelper(node.children[letter]!, str, index + 1);
+
+    if (shouldDeleteNode) {
+      node.children.remove(letter);
+      return node
+          .children.isEmpty; //return true if theres no other branches
+    }
+
+    return false;
+  }
 }
 
 void main(List<String> args) {
@@ -58,5 +87,8 @@ void main(List<String> args) {
   trie.insert("shambu");
   print(trie.contains("shambu"));
   List<String> strings = trie.displayStrings();
+  print(strings);
+  trie.delete("shambu");
+  strings = trie.displayStrings();
   print(strings);
 }
