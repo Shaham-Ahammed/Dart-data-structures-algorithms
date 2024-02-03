@@ -38,57 +38,49 @@ class Graph {
 
   //breadth first search
 
-  bfs(int startIndex) {
-    Set<int> allValues = {};
-    List<int> visited = [];
-    List<int> queue = [];
-
+ bfs(int startValue) {
+    List<int> allValues = [];
     map.forEach((key, value) {
       allValues.add(key);
     });
-
-    queue.add(startIndex);
-
+    List<int> queue = [];
+    queue.add(startValue);
     while (queue.isNotEmpty) {
-      int currentVertex = queue.removeAt(0);
-      stdout.write("${currentVertex} ");
-
-      visited.add(currentVertex);
-      allValues.remove(currentVertex);
-
-      for (int element in map[currentVertex]!) {
-        if (!visited.contains(element)) {
-          queue.add(element);
+      int currentValue = queue.removeAt(0);
+      stdout.write("$currentValue ");
+      allValues.remove(currentValue);
+      for (int elements in map[currentValue]!) {
+        if (allValues.contains(elements)) {
+          queue.add(elements);
         }
       }
       if (queue.isEmpty && allValues.isNotEmpty) {
-        queue.add(allValues.first);
+        queue.add(allValues[0]);
       }
     }
   }
 
   //deapth first search
 
-  dfs(int firstElement) {
-    List<int> visited = [];
-    Set<int> allValues = {};
+  dfs(int startIndex) {
+    List<int> allValues = [];
     map.forEach((key, value) {
       allValues.add(key);
     });
-    _dfsHelper(firstElement, visited, allValues);
+    dfsHelper(startIndex, allValues);
   }
 
-  _dfsHelper(int currentVertex, List<int> visited, Set<int> allValues) {
-    visited.add(currentVertex);
-    allValues.remove(currentVertex);
-    stdout.write("${currentVertex} ");
-    for (int element in map[currentVertex]!) {
-      if (!visited.contains(element)) {
-        _dfsHelper(element, visited, allValues);
+  dfsHelper(int currentIndex, List<int> allValues) {
+    print("$currentIndex ");
+
+    allValues.remove(currentIndex);
+    for (int element in map[currentIndex]!) {
+      if (allValues.contains(element)) {
+        dfsHelper(element, allValues);
       }
     }
     if (allValues.isNotEmpty) {
-      _dfsHelper(allValues.first, visited, allValues);
+      dfsHelper(allValues[0], allValues);
     }
   }
 }
