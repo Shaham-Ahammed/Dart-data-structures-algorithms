@@ -82,6 +82,7 @@ class Trie {
       if (node.children.containsKey(prefix[i])) {
         node = node.children[prefix[i]]!;
       } else {
+        print("no elemetns with prefix $prefix present in the trie");
         return;
       }
     }
@@ -114,6 +115,6 @@ void main(List<String> args) {
   print(strings);
   trie.delete("shambu");
   strings = trie.displayStrings();
-  trie.displayStringWithPrefix("sha");
-  print(strings);
+  trie.displayStringWithPrefix("ffff");
+  
 }
