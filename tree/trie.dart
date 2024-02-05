@@ -51,17 +51,14 @@ class Trie {
 
   void delete(String str) {
     if (contains(str)) {
-         deleteHelper(root, str, 0);
+      deleteHelper(root, str, 0);
     }
- 
   }
 
   bool deleteHelper(TrieNode node, String str, int index) {
     if (index == str.length) {
-     
       node.children.remove(endSymbol);
-      return node
-          .children.isEmpty; 
+      return node.children.isEmpty;
     }
 
     String letter = str[index];
@@ -71,11 +68,38 @@ class Trie {
 
     if (shouldDeleteNode) {
       node.children.remove(letter);
-      return node
-          .children.isEmpty; //return true if theres no other branches
+      return node.children.isEmpty; //return true if theres no other branches
     }
 
     return false;
+  }
+
+  //words searching
+
+  displayStringWithPrefix(String prefix) {
+    TrieNode node = root;
+    for (var i = 0; i < prefix.length; i++) {
+      if (node.children.containsKey(prefix[i])) {
+        node = node.children[prefix[i]]!;
+      } else {
+        return;
+      }
+    }
+    List<String> elements = [];
+    displayStringWithPrefixHelper(node, prefix, elements);
+    print(elements);
+  }
+
+  displayStringWithPrefixHelper(
+      TrieNode node, String currentString, List<String> elements) {
+    if (node.children.containsKey(endSymbol)) {
+      elements.add(currentString);
+    }
+    node.children.forEach((key, value) {
+      if (key != endSymbol && value != null) {
+        displayStringWithPrefixHelper(value, currentString + key, elements);
+      }
+    });
   }
 }
 
@@ -90,5 +114,6 @@ void main(List<String> args) {
   print(strings);
   trie.delete("shambu");
   strings = trie.displayStrings();
+  trie.displayStringWithPrefix("sha");
   print(strings);
 }
