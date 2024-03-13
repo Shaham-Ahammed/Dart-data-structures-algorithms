@@ -85,7 +85,7 @@ class MinHeap {
 }
 
 void main(List<String> args) {
-  List<int> array = [6, 2, 8];
+  List<int> array = [3, 7, 5, 9, 87, 6, 45, 2, 12, 53];
   MinHeap heap = MinHeap(array);
   heap.insert(1);
   heap.insert(5);

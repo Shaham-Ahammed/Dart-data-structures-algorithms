@@ -8,8 +8,8 @@ class Trie {
 
   insert(String str) {
     TrieNode node = root;
-    for (var i = 0; i < str.length; i++) {
-      TrieNode newNode = TrieNode();
+    TrieNode newNode = TrieNode();
+    for (var i = 0; i < str.length; i++) {   
       String letter = str[i];
       if (!node.children.containsKey(letter)) {
         node.children.addAll({letter: newNode});
@@ -23,7 +23,6 @@ class Trie {
     TrieNode node = root;
     for (var i = 0; i < str.length; i++) {
       String letter = str[i];
-
       if (!node.children.containsKey(letter)) {
         return false;
       }
@@ -110,7 +109,7 @@ void main(List<String> args) {
   trie.insert("ab");
   trie.insert("sha");
   trie.insert("shambu");
-  print(trie.contains("shambu"));
+  print(trie.contains("sham"));
   List<String> strings = trie.displayStrings();
   print(strings);
   trie.delete("shambu");

@@ -165,9 +165,11 @@ class BinaryTree {
 void main(List<String> args) {
   BinaryTree tree = BinaryTree();
   tree.insertData(10);
-  tree.insertData(8);
-  tree.insertData(16);
+  tree.insertData(6);
   tree.insertData(4);
-  tree.insertData(9);
-  print(tree.findClosest(13));
+  tree.insertData(8);
+  tree.insertData(30);
+  tree.insertData(35);
+  tree.insertData(20);
+  tree.inOrder();
 }
