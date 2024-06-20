@@ -73,6 +73,7 @@ class BinaryTree {
           removeHelper(currentNode.data!, currentNode.right, currentNode);
         } else {
           if (parentNode == null) {
+            //removing element is in root and it is unbalanced tree
             if (currentNode.left != null) {
               root = currentNode.left;
             } else {

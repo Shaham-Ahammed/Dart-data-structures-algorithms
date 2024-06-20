@@ -8,8 +8,9 @@ class Trie {
 
   insert(String str) {
     TrieNode node = root;
-    TrieNode newNode = TrieNode();
-    for (var i = 0; i < str.length; i++) {   
+
+    for (var i = 0; i < str.length; i++) {
+      TrieNode newNode = TrieNode();
       String letter = str[i];
       if (!node.children.containsKey(letter)) {
         node.children.addAll({letter: newNode});
@@ -115,5 +116,4 @@ void main(List<String> args) {
   trie.delete("shambu");
   strings = trie.displayStrings();
   trie.displayStringWithPrefix("ffff");
-  
 }
